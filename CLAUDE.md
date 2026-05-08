@@ -65,11 +65,13 @@ Pattern emprunté au compte de référence `demomarkets` (qui marche bout-en-bou
 
 | Composant | Chemin | Description | CMS-pilotable |
 |-----------|--------|-------------|---------------|
-| — | — | Aucun pour l'instant | — |
+| `LookbookGrid` | `src/components/sections/LookbookGrid/` | 3 cellules éditoriales côte à côte, image + titre + CTA | ✅ |
+| `InstagramFeed` | `src/components/sections/InstagramFeed/` | Section "GET INSPIRED" — grille 3-6 images carrées, icône Instagram en overlay au hover, liens vers posts | ✅ |
 
 **Idées en cours** :
-- Section "GET INSPIRED" (Instagram grid) — grille éditoriale 3+ images avec icône Instagram overlay
-- Page éditoriale brand story, lookbook interactif, PDP enrichie, hero homepage
+- Hero homepage éditorial
+- Page éditoriale brand story / lookbook interactif
+- PDP enrichie (size guide, sticky add-to-cart)
 
 ## Décisions d'architecture
 
