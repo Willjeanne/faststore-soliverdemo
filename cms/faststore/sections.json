@@ -1,5 +1,80 @@
 [
   {
+    "name": "HeroBanner",
+    "schema": {
+      "title": "Hero Banner",
+      "description": "Grande image pleine largeur avec titre, sous-titre et bouton CTA en overlay",
+      "type": "object",
+      "properties": {
+        "image": {
+          "title": "Image (desktop)",
+          "type": "string",
+          "default": ""
+        },
+        "imageAlt": {
+          "title": "Description de l'image (alt)",
+          "type": "string",
+          "default": ""
+        },
+        "imageMobile": {
+          "title": "Image mobile (optionnel)",
+          "description": "Si vide, l'image desktop est utilisée sur mobile",
+          "type": "string",
+          "default": ""
+        },
+        "title": {
+          "title": "Titre",
+          "type": "string",
+          "default": ""
+        },
+        "subtitle": {
+          "title": "Sous-titre (optionnel)",
+          "type": "string",
+          "default": ""
+        },
+        "linkUrl": {
+          "title": "URL du lien (optionnel)",
+          "type": "string",
+          "default": ""
+        },
+        "linkLabel": {
+          "title": "Texte du bouton CTA (optionnel)",
+          "type": "string",
+          "default": "Découvrir"
+        },
+        "textPosition": {
+          "title": "Position du texte",
+          "type": "string",
+          "enumNames": [
+            "Haut gauche", "Haut centre", "Haut droite",
+            "Centre gauche", "Centre", "Centre droite",
+            "Bas gauche", "Bas centre", "Bas droite"
+          ],
+          "enum": [
+            "top-left", "top-center", "top-right",
+            "center-left", "center-center", "center-right",
+            "bottom-left", "bottom-center", "bottom-right"
+          ],
+          "default": "bottom-left"
+        },
+        "textColor": {
+          "title": "Couleur du texte",
+          "type": "string",
+          "enumNames": ["Blanc", "Noir"],
+          "enum": ["white", "black"],
+          "default": "white"
+        },
+        "overlayOpacity": {
+          "title": "Opacité de l'overlay sombre (0-100)",
+          "type": "number",
+          "default": 30,
+          "minimum": 0,
+          "maximum": 100
+        }
+      }
+    }
+  },
+  {
     "name": "LookbookGrid",
     "schema": {
       "title": "Lookbook Grid",
