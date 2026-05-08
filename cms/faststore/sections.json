@@ -141,5 +141,79 @@
         }
       }
     }
+  },
+  {
+    "name": "InstagramFeed",
+    "schema": {
+      "title": "Instagram Feed",
+      "description": "Section GET INSPIRED — grille d'images Instagram éditoriales",
+      "type": "object",
+      "properties": {
+        "title": {
+          "title": "Titre de la section",
+          "type": "string",
+          "default": "GET INSPIRED"
+        },
+        "subtitle": {
+          "title": "Sous-titre",
+          "type": "string",
+          "default": "Follow us on Instagram"
+        },
+        "image1": {
+          "title": "Image 1 (obligatoire)",
+          "type": "object",
+          "properties": {
+            "image": { "title": "URL de l'image", "type": "string", "default": "" },
+            "imageAlt": { "title": "Description (alt)", "type": "string", "default": "" },
+            "instagramUrl": { "title": "Lien Instagram", "type": "string", "default": "https://www.instagram.com" }
+          }
+        },
+        "image2": {
+          "title": "Image 2 (obligatoire)",
+          "type": "object",
+          "properties": {
+            "image": { "title": "URL de l'image", "type": "string", "default": "" },
+            "imageAlt": { "title": "Description (alt)", "type": "string", "default": "" },
+            "instagramUrl": { "title": "Lien Instagram", "type": "string", "default": "https://www.instagram.com" }
+          }
+        },
+        "image3": {
+          "title": "Image 3 (obligatoire)",
+          "type": "object",
+          "properties": {
+            "image": { "title": "URL de l'image", "type": "string", "default": "" },
+            "imageAlt": { "title": "Description (alt)", "type": "string", "default": "" },
+            "instagramUrl": { "title": "Lien Instagram", "type": "string", "default": "https://www.instagram.com" }
+          }
+        },
+        "image4": {
+          "title": "Image 4 (optionnel)",
+          "type": "object",
+          "properties": {
+            "image": { "title": "URL de l'image", "type": "string", "default": "" },
+            "imageAlt": { "title": "Description (alt)", "type": "string", "default": "" },
+            "instagramUrl": { "title": "Lien Instagram", "type": "string", "default": "https://www.instagram.com" }
+          }
+        },
+        "image5": {
+          "title": "Image 5 (optionnel)",
+          "type": "object",
+          "properties": {
+            "image": { "title": "URL de l'image", "type": "string", "default": "" },
+            "imageAlt": { "title": "Description (alt)", "type": "string", "default": "" },
+            "instagramUrl": { "title": "Lien Instagram", "type": "string", "default": "https://www.instagram.com" }
+          }
+        },
+        "image6": {
+          "title": "Image 6 (optionnel)",
+          "type": "object",
+          "properties": {
+            "image": { "title": "URL de l'image", "type": "string", "default": "" },
+            "imageAlt": { "title": "Description (alt)", "type": "string", "default": "" },
+            "instagramUrl": { "title": "Lien Instagram", "type": "string", "default": "https://www.instagram.com" }
+          }
+        }
+      }
+    }
   }
 ]
