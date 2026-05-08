@@ -67,6 +67,14 @@ Pattern emprunté au compte de référence `demomarkets` (qui marche bout-en-bou
 |-----------|--------|-------------|---------------|
 | `LookbookGrid` | `src/components/sections/LookbookGrid/` | 3 cellules éditoriales côte à côte, image + titre + CTA | ✅ |
 | `InstagramFeed` | `src/components/sections/InstagramFeed/` | Section "GET INSPIRED" — grille 3-6 images carrées, icône Instagram en overlay au hover, liens vers posts | ✅ |
+| `FullWidthShelf` | `src/components/sections/FullWidthShelf/` | Carousel produits pleine largeur, hover image-swap (2 photos par produit), flèches nav, données via Catalog Portal API | ✅ |
+
+**FullWidthShelf — détails techniques** :
+- Utilise l'API Catalog Portal (`/api/catalog_system/pub/products/search`) — pas l'IS API (indexation soliverdemo incomplète)
+- Le proxy Next.js (`rewrites` dans `discovery.config.js`) est indispensable en local pour contourner le CORS — redémarrer `yarn dev` si 404
+- Mapping slug → ID catégorie : `{ clothes: 2, accessories: 8, bags: 9, coats: 3, dresses: 7, pants: 5, shirts: 6, sweatwear: 4 }`
+- Props CMS : `title` (optionnel), `categorySlug` (string), `count` (4 | 8 | 12)
+- Retourne `null` silencieusement si aucun produit → vérifier l'onglet Network si le composant n'apparaît pas
 
 **Idées en cours** :
 - Hero homepage éditorial
@@ -90,9 +98,12 @@ Aucun pour l'instant.
 
 ## TODOs ouverts
 
+- [ ] Installer `vtex.checkout-ui-settings` pour corriger la page "Order Placed" blanche (`vtex install vtex.checkout-ui-settings` depuis le dossier du projet)
 - [ ] Attendre fin d'indexation Intelligent Search (lancée — Store Settings > IS > Integrations)
 - [ ] Vérifier la recherche sur soliverdemo.vtex.app une fois l'indexation terminée
-- [ ] Phase 2 : construire les sections/pages custom pour la démo s.Oliver (Instagram Feed, hero éditorial, etc.)
+- [ ] Phase 2 : Hero homepage éditorial (priorité démo)
+- [ ] Phase 2 : Brand story / lookbook interactif (optionnel)
+- [ ] Phase 2 : PDP enrichie (size guide, sticky add-to-cart)
 
 ## Règles de code
 
