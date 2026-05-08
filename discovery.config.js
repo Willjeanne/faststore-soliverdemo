@@ -71,28 +71,31 @@ module.exports = {
     ? 'https://soliverdemo.myvtex.com/api/io/account'
     : 'https://soliverdemo.vtex.app/api/io/account',
 
-  // TODO: À remplir avec les slugs soliverdemo (PDP + PLP) une fois FastStore déployé
   previewRedirects: {
     home: '/',
-    plp: "/",
-    search: "/s?q=",
-    pdp: "/",
+    plp: "/clothes",
+    search: "/s?q=blazer",
+    pdp: "/blazer-bente-lyocell-blend-rose-10020517/p",
   },
 
   // Lighthouse CI
   lighthouse: {
     server: process.env.BASE_SITE_URL || 'http://localhost:3000',
     pages: {
-      // TODO: À remplir avec les slugs soliverdemo
       home: '/',
+      pdp: "/blazer-bente-lyocell-blend-rose-10020517/p",
+      collection: "/clothes",
     },
   },
 
   // E2E CI
   cypress: {
     pages: {
-      // TODO: À remplir avec les slugs soliverdemo
       home: '/',
+      pdp: "/blazer-bente-lyocell-blend-rose-10020517/p",
+      collection: "/clothes",
+      collection_filtered: "/clothes?category-1=clothes&fuzzy=0&operator=and&facets=category-1%2Cfuzzy%2Coperator&sort=score_desc&page=0",
+      search: "/s?q=blazer",
     },
     browser: 'electron',
   },
