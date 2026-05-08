@@ -88,12 +88,9 @@ Aucun pour l'instant.
 
 ## TODOs ouverts
 
-- [ ] Connecter WebOps au repo GitHub `faststore-soliverdemo`
-- [ ] Premier deploy → créer `soliverdemo.vtex.app`
-- [ ] Récupérer les slugs produits/catégories du catalogue soliverdemo
-- [ ] Remplir `previewRedirects`, `lighthouse.pages`, `cypress.pages` dans `discovery.config.js`
-- [ ] `yarn cms-sync` pour pousser les schémas CMS vers soliverdemo
-- [ ] Activer Intelligent Search dans l'admin soliverdemo (Store Settings > Intelligent Search > Integrations)
+- [ ] Attendre fin d'indexation Intelligent Search (lancée — Store Settings > IS > Integrations)
+- [ ] Vérifier la recherche sur soliverdemo.vtex.app une fois l'indexation terminée
+- [ ] Phase 2 : construire les sections/pages custom pour la démo s.Oliver (Instagram Feed, hero éditorial, etc.)
 
 ## Règles de code
 
