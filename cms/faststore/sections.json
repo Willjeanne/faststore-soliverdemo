@@ -154,11 +154,11 @@
           "type": "string",
           "default": ""
         },
-        "categoryId": {
-          "title": "ID de catégorie VTEX",
-          "description": "Ex: 2 = Clothes, 8 = Accessories, 9 = Bags",
-          "type": "number",
-          "default": 2
+        "categorySlug": {
+          "title": "Slug de catégorie",
+          "description": "Ex: clothes, accessories, bags, dresses",
+          "type": "string",
+          "default": "clothes"
         },
         "count": {
           "title": "Nombre de produits à afficher",

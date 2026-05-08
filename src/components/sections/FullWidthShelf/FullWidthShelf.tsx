@@ -3,17 +3,24 @@
 import { useState, useEffect, useRef } from 'react'
 import styles from './FullWidthShelf.module.scss'
 
-// ─── VTEX Catalog API types ───────────────────────────────────────────────────
+// ─── Intelligent Search API types ────────────────────────────────────────────
 
-interface VtexProduct {
+interface ISProduct {
   productId: string
   productName: string
   linkText: string
+  priceRange?: {
+    sellingPrice?: { lowPrice?: number }
+  }
   items: Array<{
     name: string
     images: Array<{ imageUrl: string }>
-    sellers: Array<{ commertialOffer: { Price: number } }>
+    sellers?: Array<{ commertialOffer?: { Price?: number } }>
   }>
+}
+
+interface ISResponse {
+  products: ISProduct[]
 }
 
 // ─── Internal types ───────────────────────────────────────────────────────────
@@ -32,20 +39,24 @@ interface ShelfProduct {
 
 interface FullWidthShelfProps {
   title?: string
-  categoryId?: number
+  categorySlug?: string
   count?: number
 }
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
-function parseProducts(raw: VtexProduct[]): ShelfProduct[] {
+function parseProducts(raw: ISProduct[]): ShelfProduct[] {
   return raw.map((p) => {
     const item = p.items[0]
+    const price =
+      item?.sellers?.[0]?.commertialOffer?.Price ??
+      p.priceRange?.sellingPrice?.lowPrice ??
+      0
     return {
       id: p.productId,
       name: p.productName.toUpperCase(),
       variant: item?.name ?? '',
-      price: item?.sellers?.[0]?.commertialOffer?.Price ?? 0,
+      price,
       link: `/${p.linkText}/p`,
       image1: item?.images?.[0]?.imageUrl ?? '',
       image2: item?.images?.[1]?.imageUrl ?? null,
@@ -63,7 +74,7 @@ const VISIBLE = 4
 
 export default function FullWidthShelf({
   title,
-  categoryId = 2,
+  categorySlug = 'clothes',
   count = 8,
 }: FullWidthShelfProps) {
   const [products, setProducts] = useState<ShelfProduct[]>([])
@@ -71,13 +82,14 @@ export default function FullWidthShelf({
   const trackRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    const facets = encodeURIComponent(JSON.stringify([['category-1', categorySlug]]))
     fetch(
-      `/api/catalog_system/pub/products/search/?fq=C:/${categoryId}/&_from=0&_to=${count - 1}&O=OrderByTopSaleDESC`
+      `/_v/api/intelligent-search/product_search/v3?selectedFacets=${facets}&page=1&count=${count}&sort=orders%3Adesc`
     )
       .then((r) => r.json())
-      .then((data: VtexProduct[]) => setProducts(parseProducts(data)))
+      .then((data: ISResponse) => setProducts(parseProducts(data.products ?? [])))
       .catch(() => {})
-  }, [categoryId, count])
+  }, [categorySlug, count])
 
   const maxIndex = Math.max(0, products.length - VISIBLE)
 
@@ -114,19 +126,9 @@ export default function FullWidthShelf({
           {products.map((p) => (
             <a key={p.id} href={p.link} className={styles.card} aria-label={p.name}>
               <div className={styles.imageWrapper}>
-                <img
-                  src={p.image1}
-                  alt={p.name}
-                  className={styles.imageMain}
-                  loading="lazy"
-                />
+                <img src={p.image1} alt={p.name} className={styles.imageMain} loading="lazy" />
                 {p.image2 && (
-                  <img
-                    src={p.image2}
-                    alt={`${p.name} — vue 2`}
-                    className={styles.imageHover}
-                    loading="lazy"
-                  />
+                  <img src={p.image2} alt={`${p.name} — vue 2`} className={styles.imageHover} loading="lazy" />
                 )}
               </div>
               <div className={styles.info}>
