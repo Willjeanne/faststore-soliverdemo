@@ -143,6 +143,34 @@
     }
   },
   {
+    "name": "FullWidthShelf",
+    "schema": {
+      "title": "Full Width Shelf",
+      "description": "Carousel produits pleine largeur avec swap d'image au hover",
+      "type": "object",
+      "properties": {
+        "title": {
+          "title": "Titre de la section (optionnel)",
+          "type": "string",
+          "default": ""
+        },
+        "categoryId": {
+          "title": "ID de catégorie VTEX",
+          "description": "Ex: 2 = Clothes, 8 = Accessories, 9 = Bags",
+          "type": "number",
+          "default": 2
+        },
+        "count": {
+          "title": "Nombre de produits à afficher",
+          "type": "number",
+          "default": 8,
+          "enum": [4, 8, 12],
+          "enumNames": ["4 produits", "8 produits", "12 produits"]
+        }
+      }
+    }
+  },
+  {
     "name": "InstagramFeed",
     "schema": {
       "title": "Instagram Feed",
