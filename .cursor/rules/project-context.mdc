@@ -1,0 +1,51 @@
+---
+alwaysApply: true
+---
+---
+description: Project context for the FastStore franceretail test repo - always loaded
+alwaysApply: true
+---
+
+# FastStore franceretail Test Repo
+
+This is a VTEX FastStore project used as a **learning/testing environment**.
+The user is William Jeanne, VTEX Solution Engineer, **not a developer** — explain changes in plain language before applying them.
+
+The same setup will later be replicated on a separate `soliverdemo` repo for an actual prospect demo (s.Oliver, Mode/Beauté/Lifestyle sector). For now, this repo is the playground.
+
+## Account & live preview
+
+- VTEX account: `franceretail` (Bricolage/Outillage catalog — Bosch, etc.)
+- Live: https://franceretail.vtex.app
+- Repo: https://github.com/Willjeanne/faststore-franceretail
+- Locale: fr-FR, EUR
+
+## Learning scope (in priority order)
+
+1. ProductCard override (badge, price, image, hover)
+2. PLP override (ProductGrid + filters layout)
+3. PDP override (ProductDetails section: gallery, title, price, BuyButton, description)
+4. Global theme tokens (colors, typography, radii, shadows)
+
+## Critical rules
+
+- Use FastStore design tokens (`--fs-color-*`, `--fs-text-*`, `--fs-border-*`) — never hardcode values
+- Target components via `[data-fs-*]` attributes for SCSS overrides
+- Place overrides in `src/components/overrides/` and custom sections in `src/components/sections/`
+- Prefix custom components with `Custom` (CustomProductCard, CustomBuyButton)
+- Never modify `@faststore/core` directly
+- Never override `__experimentalProductCard` or `SearchInput` without warning the user about Intelligent Search analytics impact
+- Always work on a branch, never push directly to main
+- Always answer in French
+
+## Workflow
+
+For each task: read related files → check VTEX docs via `vtex-developer` MCP if needed → present a 5-line plan and wait for OK → implement minimal changes → tell the user what to verify at `http://localhost:3000`.
+
+## Tech versions
+
+- `@faststore/cli` 3.98.4
+- Next.js 13.5
+- React 18.2
+- TypeScript 5.3.2
+- Node 18.19.0 (volta pinned)

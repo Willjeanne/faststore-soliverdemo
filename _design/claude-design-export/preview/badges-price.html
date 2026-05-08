@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: #fff; padding: 24px 28px; }
+  .label-sm { font-size: 9px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: #bbb; margin-bottom: 14px; }
+  .group { margin-bottom: 24px; }
+  .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .divider { width: 100%; height: 1px; background: #f0f0f0; margin: 4px 0 20px; }
+
+  /* Badges */
+  .badge { display: inline-block; padding: 3px 8px; font-size: 9px; font-weight: 500;
+    letter-spacing: 0.18em; text-transform: uppercase; }
+  .badge-new { background: #161925; color: #fff; }
+  .badge-sale { background: #c38d80; color: #fff; }
+  .badge-promo { background: #98b1c8; color: #fff; }
+  .badge-outline { background: transparent; color: #161925; border: 1px solid #161925; }
+  .badge-pill { border-radius: 999px; padding: 3px 10px; }
+
+  /* Size pills */
+  .sizes { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 4px; }
+  .size { display: flex; align-items: center; justify-content: center;
+    min-width: 40px; height: 36px; padding: 0 8px;
+    font-size: 11px; font-weight: 400; letter-spacing: 0.05em;
+    border: 1px solid #e8e5e5; color: #161925; cursor: pointer; }
+  .size-selected { border-color: #161925; background: #161925; color: #fff; }
+  .size-unavailable { color: #ccc; border-color: #ededed; text-decoration: line-through; }
+
+  /* Price */
+  .price-block { display: flex; align-items: baseline; gap: 8px; }
+  .price { font-size: 16px; font-weight: 400; color: #161925; }
+  .price-sale { font-size: 16px; font-weight: 400; color: #c38d80; }
+  .price-orig { font-size: 13px; color: #bbb; text-decoration: line-through; }
+  .price-promo { font-size: 11px; color: #98b1c8; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; }
+</style>
+</head>
+<body>
+  <div class="group">
+    <div class="label-sm">Badges</div>
+    <div class="row">
+      <span class="badge badge-new">New In</span>
+      <span class="badge badge-sale">Sale</span>
+      <span class="badge badge-promo">−10%</span>
+      <span class="badge badge-outline">Limited</span>
+      <span class="badge badge-new badge-pill">New In</span>
+      <span class="badge badge-sale badge-pill">−30%</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="group">
+    <div class="label-sm">Size selector</div>
+    <div class="sizes">
+      <div class="size">XS</div>
+      <div class="size">S</div>
+      <div class="size">M</div>
+      <div class="size size-selected">L</div>
+      <div class="size">XL</div>
+      <div class="size size-unavailable">XXL</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="group">
+    <div class="label-sm">Prix — variantes</div>
+    <div style="display:flex; flex-direction:column; gap:12px;">
+      <div class="price-block">
+        <span class="price">89,00 €</span>
+      </div>
+      <div class="price-block">
+        <span class="price-sale">119,00 €</span>
+        <span class="price-orig">179,00 €</span>
+      </div>
+      <div class="price-block" style="flex-direction:column; gap:2px; align-items:flex-start;">
+        <span class="price-sale">119,00 €</span>
+        <span class="price-promo">Newsletter −10% → 107,10 €</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

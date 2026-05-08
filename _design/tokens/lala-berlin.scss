@@ -1,0 +1,71 @@
+@layer theme {
+    .theme {
+      // ----------------------------------------------------------
+      // PALETTE - Main (neutrals)
+      // ----------------------------------------------------------
+      --fs-color-main-0: #ffffff;
+      --fs-color-main-1: #f5f5f5;
+      --fs-color-main-2: #ededed;
+      --fs-color-main-3: #494949;
+      --fs-color-main-4: #161925;
+  
+      // ----------------------------------------------------------
+      // PALETTE - Accent (warm editorial)
+      // ----------------------------------------------------------
+      --fs-color-accent-0: #f7f0ee;
+      --fs-color-accent-1: #e3cfcd;
+      --fs-color-accent-2: #e3bcb0;
+      --fs-color-accent-3: #c38d80;
+      --fs-color-accent-4: #dad1cb;
+  
+      // ----------------------------------------------------------
+      // HIERARCHY
+      // ----------------------------------------------------------
+      --fs-color-primary-bkg:              #161925;
+      --fs-color-primary-bkg-active:       #000000;
+      --fs-color-primary-bkg-light:        #e3cfcd; // inféré — surface primaire claire
+      --fs-color-primary-bkg-light-active: #e3bcb0; // inféré — surface primaire claire active
+  
+      // ----------------------------------------------------------
+      // ACTIONS (CTAs)
+      // ----------------------------------------------------------
+      --fs-color-action-bkg:        #000000;
+      --fs-color-action-bkg-hover:  #161925;
+      --fs-color-action-bkg-active: #333333; // inféré — press state
+  
+      // ----------------------------------------------------------
+      // SITUATIONS
+      // ----------------------------------------------------------
+      --fs-color-success-bkg: #dad1cb; // inféré — pas de vert identifié dans les screenshots
+      --fs-color-warning-bkg: #e3bcb0; // inféré — terracotta clair comme signal doux
+  
+      // ----------------------------------------------------------
+      // COMPONENTS & STATES
+      // ----------------------------------------------------------
+      --fs-color-text-display: #161925;
+  
+      // ----------------------------------------------------------
+      // TYPOGRAPHY
+      // ----------------------------------------------------------
+      --fs-text-face-body:    'DM Sans', -apple-system, system-ui, BlinkMacSystemFont, sans-serif;
+      --fs-text-face-display: 'Cormorant Garamond', Georgia, serif;
+  
+      // ----------------------------------------------------------
+      // BORDERS & SHADOWS
+      // ----------------------------------------------------------
+      --fs-border-radius:    0px;
+      --fs-shadow:           none;
+      --fs-shadow-darker:    0 1px 4px rgba(22, 25, 37, 0.06); // inféré
+      --fs-shadow-hover:     0 2px 12px rgba(0, 0, 0, 0.08);   // inféré
+  
+      // ----------------------------------------------------------
+      // FS UI Components specifics
+      // ----------------------------------------------------------
+      --fs-logo-width: 8rem;
+  
+      [data-fs-product-card] {
+        --fs-product-card-border-color:       #e8e5e5;
+        --fs-product-card-border-color-hover: #161925;
+      }
+    }
+  }

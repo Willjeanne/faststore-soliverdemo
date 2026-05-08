@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: #fff; padding: 20px; }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .token { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border: 1px solid #ededed; }
+  .dot { width: 28px; height: 28px; flex-shrink: 0; }
+  .info {}
+  .info-name { font-size: 10px; font-weight: 500; letter-spacing: 0.05em; color: #161925; }
+  .info-var { font-size: 9px; font-family: monospace; color: #999; margin-top: 1px; }
+  .section-title { font-size: 9px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: #999; margin-bottom: 10px; }
+</style>
+</head>
+<body>
+<div class="section-title">Semantic color mapping — FastStore vars</div>
+<div class="grid">
+  <div class="token">
+    <div class="dot" style="background:#ffffff; border:1px solid #ededed;"></div>
+    <div class="info"><div class="info-name">Page BG</div><div class="info-var">--fs-color-main-0</div></div>
+  </div>
+  <div class="token">
+    <div class="dot" style="background:#f5f5f5;"></div>
+    <div class="info"><div class="info-name">Surface alt</div><div class="info-var">--fs-color-main-1</div></div>
+  </div>
+  <div class="token">
+    <div class="dot" style="background:#ededed;"></div>
+    <div class="info"><div class="info-name">Disabled/muted</div><div class="info-var">--fs-color-main-2</div></div>
+  </div>
+  <div class="token">
+    <div class="dot" style="background:#494949;"></div>
+    <div class="info"><div class="info-name">Text secondary</div><div class="info-var">--fs-color-main-3</div></div>
+  </div>
+  <div class="token">
+    <div class="dot" style="background:#161925;"></div>
+    <div class="info"><div class="info-name">Text primary</div><div class="info-var">--fs-color-main-4</div></div>
+  </div>
+  <div class="token">
+    <div class="dot" style="background:#000000;"></div>
+    <div class="info"><div class="info-name">Action BG</div><div class="info-var">--fs-color-action-bkg</div></div>
+  </div>
+  <div class="token">
+    <div class="dot" style="background:#e3cfcd;"></div>
+    <div class="info"><div class="info-name">Accent surface</div><div class="info-var">--fs-color-accent-1</div></div>
+  </div>
+  <div class="token">
+    <div class="dot" style="background:#c38d80;"></div>
+    <div class="info"><div class="info-name">Accent text</div><div class="info-var">--fs-color-accent-3</div></div>
+  </div>
+  <div class="token">
+    <div class="dot" style="background:#98b1c8;"></div>
+    <div class="info"><div class="info-name">Promo bar</div><div class="info-var">--lb-color-promo-bar</div></div>
+  </div>
+  <div class="token">
+    <div class="dot" style="background:#4e4e4e;"></div>
+    <div class="info"><div class="info-name">Footer BG</div><div class="info-var">--lb-color-footer-bg</div></div>
+  </div>
+  <div class="token">
+    <div class="dot" style="background:#161925;"></div>
+    <div class="info"><div class="info-name">Badge NEW IN</div><div class="info-var">--lb-color-badge-new</div></div>
+  </div>
+  <div class="token">
+    <div class="dot" style="background:#e8e5e5;"></div>
+    <div class="info"><div class="info-name">Border</div><div class="info-var">--lb-color-border</div></div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: #fff; padding: 20px 24px; }
+  .label-sm { font-size: 9px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: #bbb; margin-bottom: 12px; }
+  .group { margin-bottom: 20px; }
+  .row { display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap; }
+  .item { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .box { width: 60px; height: 36px; background: #fff; border: 1px solid #ededed; }
+  .val { font-size: 9px; color: #999; font-family: monospace; }
+  .shadow-box { width: 60px; height: 36px; background: #fff; }
+  .divider { width: 100%; height: 1px; background: #ededed; margin: 4px 0 16px; }
+</style>
+</head>
+<body>
+  <div class="group">
+    <div class="label-sm">Border radius</div>
+    <div class="row">
+      <div class="item">
+        <div class="box" style="border-radius:0;"></div>
+        <div class="val">0px — sharp</div>
+      </div>
+      <div class="item">
+        <div class="box" style="border-radius:2px;"></div>
+        <div class="val">2px — badge</div>
+      </div>
+      <div class="item">
+        <div class="box" style="border-radius:999px; width:72px;"></div>
+        <div class="val">pill — 999px</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="group">
+    <div class="label-sm">Shadows</div>
+    <div class="row">
+      <div class="item">
+        <div class="shadow-box" style="box-shadow:none; border:1px solid #ededed;"></div>
+        <div class="val">none (défaut)</div>
+      </div>
+      <div class="item">
+        <div class="shadow-box" style="box-shadow:0 1px 4px rgba(22,25,37,0.06);"></div>
+        <div class="val">subtle</div>
+      </div>
+      <div class="item">
+        <div class="shadow-box" style="box-shadow:0 2px 12px rgba(0,0,0,0.08);"></div>
+        <div class="val">hover card</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="group">
+    <div class="label-sm">Borders</div>
+    <div class="row">
+      <div class="item">
+        <div class="box" style="border:1px solid #e8e5e5;"></div>
+        <div class="val">1px #e8e5e5</div>
+      </div>
+      <div class="item">
+        <div class="box" style="border:1px solid #ededed;"></div>
+        <div class="val">1px #ededed</div>
+      </div>
+      <div class="item">
+        <div class="box" style="border:1px solid #000;"></div>
+        <div class="val">1px #000 (btn)</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

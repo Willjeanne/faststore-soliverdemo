@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: #fff; padding: 24px 28px; }
+  .label-sm { font-size: 9px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: #bbb; margin-bottom: 14px; }
+  .group { margin-bottom: 24px; }
+  .row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+  .divider { width: 100%; height: 1px; background: #f0f0f0; margin: 4px 0 20px; }
+
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 13px 32px; font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 500;
+    letter-spacing: 0.16em; text-transform: uppercase; border: 1px solid transparent; cursor: pointer; }
+
+  .btn-primary { background: #000; color: #fff; border-color: #000; }
+  .btn-primary-hover { background: #161925; color: #fff; border-color: #161925; }
+  .btn-secondary { background: transparent; color: #000; border-color: #000; }
+  .btn-secondary-hover { background: #000; color: #fff; border-color: #000; }
+  .btn-ghost { background: transparent; color: #161925; border: none; padding: 8px 0;
+    text-decoration: underline; text-underline-offset: 3px; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; }
+  .btn-ghost-hover { opacity: 0.5; }
+  .btn-full { width: 100%; max-width: 320px; }
+
+  .state-label { font-size: 9px; color: #bbb; margin-top: 6px; text-align: center; letter-spacing: 0.05em; }
+</style>
+</head>
+<body>
+  <div class="group">
+    <div class="label-sm">Primary CTA</div>
+    <div class="row">
+      <div>
+        <div class="btn btn-primary">In die Einkaufstasche</div>
+        <div class="state-label">Default</div>
+      </div>
+      <div>
+        <div class="btn btn-primary-hover">In die Einkaufstasche</div>
+        <div class="state-label">Hover</div>
+      </div>
+      <div style="opacity:0.4;">
+        <div class="btn btn-primary">In die Einkaufstasche</div>
+        <div class="state-label">Disabled</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="group">
+    <div class="label-sm">Primary full-width (PDP)</div>
+    <div class="row">
+      <div class="btn btn-primary btn-full">In die Einkaufstasche</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="group">
+    <div class="label-sm">Secondary — outline</div>
+    <div class="row">
+      <div>
+        <div class="btn btn-secondary">Shop Now</div>
+        <div class="state-label">Default</div>
+      </div>
+      <div>
+        <div class="btn btn-secondary-hover">Shop Now</div>
+        <div class="state-label">Hover</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="group">
+    <div class="label-sm">Ghost / text link</div>
+    <div class="row">
+      <div>
+        <div class="btn btn-ghost">Alle ansehen</div>
+        <div class="state-label">Default</div>
+      </div>
+      <div style="opacity:0.5;">
+        <div class="btn btn-ghost">Alle ansehen</div>
+        <div class="state-label">Hover</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

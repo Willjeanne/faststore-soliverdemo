@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: #fff; }
+  .hero { position: relative; width: 100%; height: 380px; overflow: hidden; display: flex; align-items: flex-end; padding: 40px; }
+  .hero-bg { position: absolute; inset: 0; }
+  .hero-content { position: relative; z-index: 2; }
+  .hero-label { font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 12px; }
+  .hero-title { font-family: 'Cormorant Garamond', serif; font-size: 48px; font-weight: 300; font-style: italic; line-height: 1.05; letter-spacing: -0.01em; margin-bottom: 20px; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; padding: 13px 28px; font-size: 10px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; border: 1px solid; cursor: pointer; }
+
+  /* Variant dark */
+  .hero-dark .hero-label { color: rgba(255,255,255,0.6); }
+  .hero-dark .hero-title { color: #fff; }
+  .hero-dark .btn { background: #fff; color: #161925; border-color: #fff; }
+
+  /* Variant warm/editorial */
+  .hero-warm .hero-label { color: #c38d80; }
+  .hero-warm .hero-title { color: #161925; }
+  .hero-warm .btn { background: #000; color: #fff; border-color: #000; }
+
+  /* Category banner */
+  .cat-banner { position: relative; height: 200px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+  .cat-title { font-size: 28px; font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase; color: #161925; }
+
+  .label-sm { font-size: 9px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: #bbb; padding: 12px 16px 8px; }
+</style>
+</head>
+<body>
+  <div class="label-sm">Hero — dark editorial</div>
+  <div class="hero hero-dark">
+    <div class="hero-bg" style="background: linear-gradient(160deg, #161925 0%, #2a2a3a 60%, #1a1820 100%);"></div>
+    <div class="hero-content">
+      <div class="hero-label">New Collection</div>
+      <div class="hero-title">New in<br>this season.</div>
+      <div class="btn" style="background:#fff;color:#161925;border-color:#fff;">
+        Jetzt entdecken
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="4" y1="12" x2="20" y2="12"/><polyline points="14 6 20 12 14 18"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="label-sm">Hero — warm blush</div>
+  <div class="hero hero-warm">
+    <div class="hero-bg" style="background: linear-gradient(140deg, #e3cfcd 0%, #f7f0ee 100%);"></div>
+    <div class="hero-content">
+      <div class="hero-label">Clothes</div>
+      <div class="hero-title">Contemporary<br>Berlin style.</div>
+      <div class="btn">Shop Clothes</div>
+    </div>
+  </div>
+
+  <div class="label-sm">Category banner</div>
+  <div class="cat-banner" style="background:#e3bcb0;">
+    <div class="cat-title">BAGS</div>
+  </div>
+</body>
+</html>

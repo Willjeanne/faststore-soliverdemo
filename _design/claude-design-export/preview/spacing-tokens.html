@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: #fff; padding: 20px 24px; }
+  .grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 6px; margin-bottom: 16px; }
+  .sp { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .bar { background: #161925; width: 100%; border-radius: 0; }
+  .val { font-size: 8px; color: #999; font-family: monospace; }
+  .label-sm { font-size: 9px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: #bbb; margin-bottom: 8px; }
+  .row-demo { display: flex; gap: 0; align-items: stretch; margin-bottom: 6px; }
+  .gap-demo { background: #e3cfcd; display: flex; align-items: center; justify-content: center; font-size: 9px; color: #c38d80; font-family: monospace; }
+  .box-demo { background: #ededed; display: flex; align-items: center; justify-content: center; font-size: 9px; color: #494949; }
+</style>
+</head>
+<body>
+  <div class="label-sm">Spacing scale</div>
+  <div class="grid">
+    <div class="sp"><div class="bar" style="height:4px;"></div><div class="val">4</div></div>
+    <div class="sp"><div class="bar" style="height:8px;"></div><div class="val">8</div></div>
+    <div class="sp"><div class="bar" style="height:12px;"></div><div class="val">12</div></div>
+    <div class="sp"><div class="bar" style="height:16px;"></div><div class="val">16</div></div>
+    <div class="sp"><div class="bar" style="height:24px;"></div><div class="val">24</div></div>
+    <div class="sp"><div class="bar" style="height:32px;"></div><div class="val">32</div></div>
+    <div class="sp"><div class="bar" style="height:48px;"></div><div class="val">48</div></div>
+    <div class="sp"><div class="bar" style="height:64px;"></div><div class="val">64</div></div>
+  </div>
+
+  <div class="label-sm" style="margin-top:4px;">Layout gutter — mobile 24px · desktop 48px</div>
+  <div class="row-demo" style="height:32px; margin-bottom:12px;">
+    <div class="gap-demo" style="width:24px;">24</div>
+    <div class="box-demo" style="flex:1;">content</div>
+    <div class="gap-demo" style="width:24px;">24</div>
+  </div>
+  <div class="row-demo" style="height:32px;">
+    <div class="gap-demo" style="width:48px;">48</div>
+    <div class="box-demo" style="flex:1;">content</div>
+    <div class="gap-demo" style="width:48px;">48</div>
+  </div>
+</body>
+</html>

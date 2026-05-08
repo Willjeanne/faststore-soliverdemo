@@ -1,0 +1,143 @@
+@layer theme {
+    .theme {
+      // ----------------------------------------------------------
+      // PALETTE - Main (neutrals)
+      // ----------------------------------------------------------
+      --fs-color-main-0: #ffffff;
+      --fs-color-main-1: #f5f5f5;
+      --fs-color-main-2: #ededed;
+      --fs-color-main-3: #494949;
+      --fs-color-main-4: #161925;
+  
+      // ----------------------------------------------------------
+      // PALETTE - Accent (warm editorial)
+      // ----------------------------------------------------------
+      --fs-color-accent-0: #f7f0ee;
+      --fs-color-accent-1: #e3cfcd;
+      --fs-color-accent-2: #e3bcb0;
+      --fs-color-accent-3: #c38d80;
+      --fs-color-accent-4: #dad1cb;
+  
+      // ----------------------------------------------------------
+      // HIERARCHY
+      // ----------------------------------------------------------
+      --fs-color-primary-bkg:              #161925;
+      --fs-color-primary-bkg-active:       #000000;
+      --fs-color-primary-bkg-light:        #e3cfcd; // inféré — surface primaire claire
+      --fs-color-primary-bkg-light-active: #e3bcb0; // inféré — surface primaire claire active
+  
+      // ----------------------------------------------------------
+      // ACTIONS (CTAs)
+      // ----------------------------------------------------------
+      --fs-color-action-bkg:        #000000;
+      --fs-color-action-bkg-hover:  #161925;
+      --fs-color-action-bkg-active: #333333; // inféré — press state
+  
+      // ----------------------------------------------------------
+      // SITUATIONS
+      // ----------------------------------------------------------
+      --fs-color-success-bkg: #dad1cb; // inféré — pas de vert identifié dans les screenshots
+      --fs-color-warning-bkg: #e3bcb0; // inféré — terracotta clair comme signal doux
+  
+      // ----------------------------------------------------------
+      // COMPONENTS & STATES
+      // ----------------------------------------------------------
+      --fs-color-text-display: #161925;
+  
+      // ----------------------------------------------------------
+      // TYPOGRAPHY
+      // ----------------------------------------------------------
+      --fs-text-face-body:    'DM Sans', -apple-system, system-ui, BlinkMacSystemFont, sans-serif;
+      --fs-text-face-display: 'Cormorant Garamond', Georgia, serif;
+  
+      // ----------------------------------------------------------
+      // BORDERS & SHADOWS
+      // ----------------------------------------------------------
+      --fs-border-radius:    0px;
+      --fs-shadow:           none;
+      --fs-shadow-darker:    0 1px 4px rgba(22, 25, 37, 0.06); // inféré
+      --fs-shadow-hover:     0 2px 12px rgba(0, 0, 0, 0.08);   // inféré
+  
+      // ----------------------------------------------------------
+      // FS UI Components specifics
+      // ----------------------------------------------------------
+      --fs-logo-width: 8rem;
+
+      // PLP grid: 3 columns (editorial spacing)
+      [data-fs-product-grid] {
+        --fs-product-grid-columns-tablet:  3;
+        --fs-product-grid-columns-desktop: 3;
+      }
+  
+      [data-fs-product-card] {
+        --fs-product-card-border-color:       #e8e5e5;
+        --fs-product-card-border-color-hover: #161925;
+      }
+
+      // ----------------------------------------------------------
+      // PRODUCT CARD — Lala Berlin editorial style
+      // ----------------------------------------------------------
+
+      // Image container: clip overflow for hover zoom
+      [data-fs-product-card-image] {
+        overflow: hidden;
+
+        img {
+          object-fit: contain;
+          width: 100%;
+          height: 100%;
+          transition: transform 0.4s ease;
+        }
+      }
+
+      // Hover: subtle zoom on image
+      [data-fs-product-card]:hover [data-fs-product-card-image] img {
+        transform: scale(1.03);
+      }
+
+      // Title: uppercase editorial
+      [data-fs-product-card-title] {
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-size: 0.625rem;
+      }
+
+      // ----------------------------------------------------------
+      // ICONS — Force contrast on light backgrounds
+      // ----------------------------------------------------------
+      // FastStore default icon tokens render too pale on the editorial
+      // white background (navbar search/region, cart X, etc.). Restore
+      // the contrast pattern used in the legacy theme. Filled-button
+      // icons (Checkout CTA) keep their inverse color via FastStore's
+      // own button styles.
+
+      [data-fs-navbar-header] {
+        [data-fs-button-wrapper],
+        [data-fs-button-icon] {
+          color: var(--fs-color-text-display);
+        }
+      }
+
+      [data-fs-cart-item] [data-fs-button-icon],
+      [data-fs-cart-sidebar] [data-fs-button-icon] {
+        color: var(--fs-color-text-display);
+      }
+
+      // ----------------------------------------------------------
+      // BREADCRUMB — Prevent overlap with the sticky navbar header
+      // ----------------------------------------------------------
+      // section.section-navbar is `position: sticky; top: 0; z-index: 2`,
+      // so the breadcrumb (no stacking context) renders behind it. Lift
+      // the breadcrumb above the sticky header and add top spacing so
+      // it clears the header's box on PDP/PLP.
+
+      section.section-breadcrumb,
+      [data-fs-breadcrumb] {
+        position: relative !important;
+        z-index: 100 !important;
+        margin-top: 6rem !important;
+        padding-top: 1rem !important;
+        background-color: var(--fs-color-main-0) !important;
+      }
+    }
+  }
