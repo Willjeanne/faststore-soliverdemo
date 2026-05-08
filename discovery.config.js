@@ -115,4 +115,12 @@ module.exports = {
       "https://soliverdemo.myvtex.com/cms-releases/webhook-releases",
     ],
   },
+
+  // Proxy pour les appels API VTEX Catalog en dev (localhost:3000)
+  rewrites: async () => [
+    {
+      source: '/api/catalog_system/:path*',
+      destination: 'https://soliverdemo.vtexcommercestable.com.br/api/catalog_system/:path*',
+    },
+  ],
 }
