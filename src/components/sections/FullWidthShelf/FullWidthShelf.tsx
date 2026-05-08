@@ -3,24 +3,17 @@
 import { useState, useEffect, useRef } from 'react'
 import styles from './FullWidthShelf.module.scss'
 
-// ─── Intelligent Search API types ────────────────────────────────────────────
+// ─── VTEX Catalog Portal API types ───────────────────────────────────────────
 
-interface ISProduct {
+interface VtexProduct {
   productId: string
   productName: string
   linkText: string
-  priceRange?: {
-    sellingPrice?: { lowPrice?: number }
-  }
   items: Array<{
     name: string
     images: Array<{ imageUrl: string }>
-    sellers?: Array<{ commertialOffer?: { Price?: number } }>
+    sellers: Array<{ commertialOffer: { Price: number } }>
   }>
-}
-
-interface ISResponse {
-  products: ISProduct[]
 }
 
 // ─── Internal types ───────────────────────────────────────────────────────────
@@ -45,18 +38,14 @@ interface FullWidthShelfProps {
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
-function parseProducts(raw: ISProduct[]): ShelfProduct[] {
+function parseProducts(raw: VtexProduct[]): ShelfProduct[] {
   return raw.map((p) => {
     const item = p.items[0]
-    const price =
-      item?.sellers?.[0]?.commertialOffer?.Price ??
-      p.priceRange?.sellingPrice?.lowPrice ??
-      0
     return {
       id: p.productId,
       name: p.productName.toUpperCase(),
       variant: item?.name ?? '',
-      price,
+      price: item?.sellers?.[0]?.commertialOffer?.Price ?? 0,
       link: `/${p.linkText}/p`,
       image1: item?.images?.[0]?.imageUrl ?? '',
       image2: item?.images?.[1]?.imageUrl ?? null,
@@ -66,6 +55,18 @@ function parseProducts(raw: ISProduct[]): ShelfProduct[] {
 
 function formatPrice(price: number): string {
   return `${price.toLocaleString('fr-FR')}€`
+}
+
+// Slug → category ID mapping (extensible as needed)
+const SLUG_TO_ID: Record<string, number> = {
+  clothes: 2,
+  accessories: 8,
+  bags: 9,
+  coats: 3,
+  dresses: 7,
+  pants: 5,
+  shirts: 6,
+  sweatwear: 4,
 }
 
 const VISIBLE = 4
@@ -82,12 +83,14 @@ export default function FullWidthShelf({
   const trackRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const facets = encodeURIComponent(JSON.stringify([['category-1', categorySlug]]))
+    const categoryId = SLUG_TO_ID[categorySlug] ?? 2
     fetch(
-      `/_v/api/intelligent-search/product_search/v3?selectedFacets=${facets}&page=1&count=${count}&sort=orders%3Adesc`
+      `/api/catalog_system/pub/products/search?fq=C%3A%2F${categoryId}%2F&_from=0&_to=${count - 1}&O=OrderByTopSaleDESC`
     )
       .then((r) => r.json())
-      .then((data: ISResponse) => setProducts(parseProducts(data.products ?? [])))
+      .then((data: VtexProduct[]) => {
+        if (Array.isArray(data)) setProducts(parseProducts(data))
+      })
       .catch(() => {})
   }, [categorySlug, count])
 

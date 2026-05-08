@@ -116,11 +116,15 @@ module.exports = {
     ],
   },
 
-  // Proxy pour les appels Intelligent Search en dev (localhost:3000)
+  // Proxy pour les appels API VTEX en dev (localhost:3000)
   rewrites: async () => [
     {
       source: '/_v/api/intelligent-search/:path*',
       destination: 'https://soliverdemo.vtexcommercestable.com.br/_v/api/intelligent-search/:path*',
+    },
+    {
+      source: '/api/catalog_system/:path*',
+      destination: 'https://soliverdemo.vtexcommercestable.com.br/api/catalog_system/:path*',
     },
   ],
 }
