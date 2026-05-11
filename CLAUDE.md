@@ -68,6 +68,7 @@ Pattern emprunté au compte de référence `demomarkets` (qui marche bout-en-bou
 | `LookbookGrid` | `src/components/sections/LookbookGrid/` | 3 cellules éditoriales côte à côte, image + titre + CTA | ✅ |
 | `InstagramFeed` | `src/components/sections/InstagramFeed/` | Section "GET INSPIRED" — grille 3-6 images carrées, icône Instagram en overlay au hover, liens vers posts | ✅ |
 | `FullWidthShelf` | `src/components/sections/FullWidthShelf/` | Carousel produits pleine largeur, hover image-swap (2 photos par produit), flèches nav, données via Catalog Portal API | ✅ |
+| `HeroBanner` | `src/components/sections/HeroBanner/` | Image pleine largeur (85vh), titre/sous-titre/CTA en overlay, 9 positions de texte, overlay réglable, image mobile optionnelle | ✅ |
 
 **FullWidthShelf — détails techniques** :
 - Utilise l'API Catalog Portal (`/api/catalog_system/pub/products/search`) — pas l'IS API (indexation soliverdemo incomplète)
@@ -77,7 +78,6 @@ Pattern emprunté au compte de référence `demomarkets` (qui marche bout-en-bou
 - Retourne `null` silencieusement si aucun produit → vérifier l'onglet Network si le composant n'apparaît pas
 
 **Idées en cours** :
-- Hero homepage éditorial
 - Page éditoriale brand story / lookbook interactif
 - PDP enrichie (size guide, sticky add-to-cart)
 
@@ -89,21 +89,45 @@ Pattern emprunté au compte de référence `demomarkets` (qui marche bout-en-bou
 |------|----------|--------|----------------------|
 | 2026-05-08 | Thème `lala-berlin` conservé | Look éditorial mode/lifestyle adapté au positionnement s.Oliver | Nouveau thème from scratch (trop long) |
 | 2026-05-08 | Pattern checkout via `myvtex.com` | Seul pattern fonctionnel bout-en-bout sur comptes demo | `secure.vtexfaststore.com` (nécessite enregistrement infra) |
+| 2026-05-08 | FullWidthShelf via Catalog Portal API | IS pas encore indexée sur soliverdemo → `/api/catalog_system/pub/products/search` seul disponible | IS API (`/_v/api/intelligent-search/...`) → 400 timeout |
+| 2026-05-08 | Sections sans override `__experimentalProductCard` | Évite l'impact analytics IS — chaque section gère son propre rendu de carte | Override global (impacte toutes les PLP/PDP) |
+| 2026-05-11 | Checkout CSS via admin code editor (pas checkout-ui-settings) | Plus simple pour la démo — `vtex.checkout-ui-settings` désinstallé car bloquait l'éditeur admin | checkout-ui-settings (nécessite workflow VTEX IO deploy) |
+| 2026-05-11 | Order Placed via `faststore-vtex-integrations` app | Pattern officiel FastStore pour intégrer la page de confirmation | vtex.order-placed seul (ne s'affiche pas sans store-theme qui le déclare) |
 
 ## Workarounds
 
-*(À compléter si on rencontre des hacks)*
+| Workaround | Détail |
+|-----------|--------|
+| `vtex.checkout-ui-settings` désinstallé | L'app bloquait l'éditeur admin checkout — désinstallée via `vtex uninstall vtex.checkout-ui-settings`. Le CSS est maintenant dans `checkout6-custom.css` via l'admin. |
+| `vtex-checkout-confirmation` template | Revenu au contenu YAML d'origine (`vtex_io: app_name: checkout-confirmation-ui`). Notre HTML custom avait été mis par erreur et empêchait le chargement des JS custom. |
+| Mini cart z-index — `section-cart-sidebar` | `section.section-cart-sidebar` n'avait pas de stacking context → le SlideOver (position:fixed) peignait sous la navbar sticky (z-index:2). Fix dans `src/themes/lala-berlin.scss` (règle globale hors `@layer`) : `.section-cart-sidebar { position: relative; z-index: 500 }` + `[data-fs-slide-over] { top: 0 !important }`. |
+| Prix $US (cookie stale) | Pas de bug code — la Trade Policy a été configurée USD au départ puis changée en EUR. Les anciens visiteurs ont un cookie de session USD en cache. Fix : ouvrir un onglet privé ou effacer les cookies `soliverdemo.vtex.app`. Les nouveaux visiteurs voient EUR directement. |
 
-Aucun pour l'instant.
+## Checkout — état actuel (2026-05-11)
+
+**CSS appliqué** (`checkout6-custom.css` dans l'admin) :
+- Polices DM Sans + Cormorant Garamond chargées via Google Fonts
+- Boutons (`btn-success`, `btn-go`) : `#161925`, border-radius 0, uppercase
+- Inputs : border `#494949`, focus `#161925`, border-radius 0
+- Fond blanc, accents lala-berlin
+
+**Logo checkout** (`checkout-header` template dans l'admin) :
+- Logo s.Oliver → `https://soliverdemo.vtexassets.com/assets/vtex.file-manager-graphql/images/df54979d-a4e8-4846-9456-82d6777b577d___eb1e82ce86b600d8efbf18941447d087.png`
+- Lien → `https://soliverdemo.vtex.app/`
+
+**Order Placed** :
+- App `soliverdemo.store-theme@2.3.1` déployée depuis `~/Documents/faststore-vtex-integrations/`
+- Dépendance `vtex.order-placed@2.x` déclarée dans le manifest
+- Promu en master via `vtex workspace promote`
+- Logo dans `store/blocks/header.jsonc` → logo lala-berlin (SVG local asset)
+- Page accessible : `soliverdemo.myvtex.com/checkout/orderPlaced?og=XXX`
 
 ## TODOs ouverts
 
-- [ ] Installer `vtex.checkout-ui-settings` pour corriger la page "Order Placed" blanche (`vtex install vtex.checkout-ui-settings` depuis le dossier du projet)
 - [ ] Attendre fin d'indexation Intelligent Search (lancée — Store Settings > IS > Integrations)
 - [ ] Vérifier la recherche sur soliverdemo.vtex.app une fois l'indexation terminée
-- [ ] Phase 2 : Hero homepage éditorial (priorité démo)
-- [ ] Phase 2 : Brand story / lookbook interactif (optionnel)
-- [ ] Phase 2 : PDP enrichie (size guide, sticky add-to-cart)
+- [ ] Supprimer un des deux Cross Selling Shelves sur la PDP (IS sans trafic réel → produits quasi-identiques sur les deux shelves)
+- [ ] Créer le repo `faststore-se-starter` (starter kit SE — voir plan dans la mémoire Claude)
 
 ## Règles de code
 
