@@ -143,11 +143,14 @@
   }
 
 // ----------------------------------------------------------
-// CART SIDEBAR — Global rule (outside .theme — portal renders to <body>)
+// CART SIDEBAR — Global rules (outside .theme)
 // ----------------------------------------------------------
-// SlideOver is position:fixed without z-index; navbar has z-index:2.
-// Must be global because React portal renders outside .theme wrapper.
+// section.section-cart-sidebar has no stacking context by default, so its
+// position:fixed children (SlideOver, Overlay) participate in the root context
+// at z-index:auto — below the sticky navbar (z-index:2). Fix: give the section
+// a stacking context at z-index:500 so it and all its children paint above navbar.
 
-[data-fs-slide-over] {
-  z-index: 400 !important;
+.section-cart-sidebar {
+  position: relative;
+  z-index: 500;
 }
