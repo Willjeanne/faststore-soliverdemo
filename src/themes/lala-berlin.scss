@@ -141,3 +141,13 @@
       }
     }
   }
+
+// ----------------------------------------------------------
+// CART SIDEBAR — Global rule (outside .theme — portal renders to <body>)
+// ----------------------------------------------------------
+// SlideOver is position:fixed without z-index; navbar has z-index:2.
+// Must be global because React portal renders outside .theme wrapper.
+
+[data-fs-slide-over] {
+  z-index: 400;
+}
