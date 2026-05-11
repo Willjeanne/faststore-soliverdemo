@@ -149,5 +149,5 @@
 // Must be global because React portal renders outside .theme wrapper.
 
 [data-fs-slide-over] {
-  z-index: 400;
+  z-index: 400 !important;
 }
