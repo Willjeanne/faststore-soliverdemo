@@ -1,0 +1,30 @@
+'use client'
+import type { SectionOverride } from '@faststore/core'
+import SizeGuide from '../sections/SizeGuide/SizeGuide'
+import LocalShippingSimulation from 'src/components/ui/ShippingSimulation/ShippingSimulation'
+
+type LocalShippingSimulationProps = React.ComponentProps<
+  typeof LocalShippingSimulation
+>
+
+function ShippingWithSizeGuide(props: LocalShippingSimulationProps) {
+  return (
+    <>
+      <SizeGuide />
+      <LocalShippingSimulation {...props} />
+    </>
+  )
+}
+
+const SECTION = 'ProductDetails' as const
+
+const override: SectionOverride = {
+  section: SECTION,
+  components: {
+    __experimentalShippingSimulation: {
+      Component: ShippingWithSizeGuide,
+    },
+  },
+}
+
+export { override }
