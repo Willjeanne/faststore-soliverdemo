@@ -10,7 +10,9 @@ type LocalShippingSimulationProps = React.ComponentProps<
 function ShippingWithSizeGuide(props: LocalShippingSimulationProps) {
   return (
     <>
-      <SizeGuide />
+      <div style={{ textAlign: 'center', padding: '0.75rem 0' }}>
+        <SizeGuide />
+      </div>
       <LocalShippingSimulation {...props} />
     </>
   )
