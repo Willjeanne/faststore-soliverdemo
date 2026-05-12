@@ -318,5 +318,45 @@
         }
       }
     }
+  },
+  {
+    "name": "SizeGuide",
+    "schema": {
+      "title": "Size Guide",
+      "description": "A 'Size Guide' link on the PDP that opens a modal with a size chart table",
+      "type": "object",
+      "properties": {
+        "buttonLabel": {
+          "title": "Button label",
+          "type": "string",
+          "default": "Size Guide"
+        },
+        "title": {
+          "title": "Modal title",
+          "type": "string",
+          "default": "Find Your Size"
+        },
+        "note": {
+          "title": "Footer note",
+          "type": "string",
+          "default": "All measurements are in centimetres (cm). If you are between sizes, we recommend sizing up."
+        },
+        "rows": {
+          "title": "Size rows",
+          "description": "One row per size. Leave empty to use the default XS–XXL mock data.",
+          "type": "array",
+          "items": {
+            "title": "Size row",
+            "type": "object",
+            "properties": {
+              "size":  { "title": "Size label (e.g. XS, S, M)", "type": "string" },
+              "chest": { "title": "Chest (cm)",                  "type": "string" },
+              "waist": { "title": "Waist (cm)",                  "type": "string" },
+              "hips":  { "title": "Hips (cm)",                   "type": "string" }
+            }
+          }
+        }
+      }
+    }
   }
 ]
