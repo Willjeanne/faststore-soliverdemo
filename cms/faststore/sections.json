@@ -358,5 +358,62 @@
         }
       }
     }
+  },
+  {
+    "name": "CountdownBanner",
+    "schema": {
+      "title": "Countdown Banner",
+      "description": "Full-width promotional banner with live countdown timer",
+      "type": "object",
+      "properties": {
+        "message": {
+          "title": "Message",
+          "type": "string",
+          "default": "Flash Sale — Limited time offer"
+        },
+        "endDate": {
+          "title": "End date & time (ISO format)",
+          "description": "e.g. 2026-06-01T23:59:00Z — banner disappears automatically when reached",
+          "type": "string",
+          "default": ""
+        },
+        "ctaLabel": {
+          "title": "CTA button label",
+          "type": "string",
+          "default": "Shop Now"
+        },
+        "ctaUrl": {
+          "title": "CTA button URL",
+          "type": "string",
+          "default": "/"
+        },
+        "ctaPosition": {
+          "title": "CTA position",
+          "type": "string",
+          "enum": ["left", "center", "right"],
+          "enumNames": ["Left", "Center", "Right"],
+          "default": "right"
+        },
+        "backgroundColor": {
+          "title": "Background color",
+          "description": "Any CSS color: #1a1a1a, red, rgb(0,0,0)…",
+          "type": "string",
+          "default": "#1a1a1a"
+        },
+        "textColor": {
+          "title": "Text color",
+          "description": "Any CSS color: #ffffff, white…",
+          "type": "string",
+          "default": "#ffffff"
+        },
+        "fontFamily": {
+          "title": "Font",
+          "type": "string",
+          "enum": ["body", "display", "mono"],
+          "enumNames": ["Body (sans-serif)", "Display (serif)", "Monospace"],
+          "default": "body"
+        }
+      }
+    }
   }
 ]
