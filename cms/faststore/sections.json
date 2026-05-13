@@ -408,9 +408,10 @@
         },
         "fontFamily": {
           "title": "Font",
+          "description": "Body = main font · Display = editorial font · Monospace = technical font",
           "type": "string",
           "enum": ["body", "display", "mono"],
-          "enumNames": ["Body (sans-serif)", "Display (serif)", "Monospace"],
+          "enumNames": ["Body font", "Display font", "Monospace"],
           "default": "body"
         }
       }
