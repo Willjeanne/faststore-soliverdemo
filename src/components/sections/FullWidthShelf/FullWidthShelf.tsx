@@ -57,16 +57,45 @@ function formatPrice(price: number): string {
   return `${price.toLocaleString('fr-FR')}€`
 }
 
-// Slug → category ID mapping (extensible as needed)
-const SLUG_TO_ID: Record<string, number> = {
-  clothes: 2,
-  accessories: 8,
-  bags: 9,
-  coats: 3,
-  dresses: 7,
-  pants: 5,
-  shirts: 6,
-  sweatwear: 4,
+// ─── Category tree resolution ─────────────────────────────────────────────────
+
+interface CategoryNode {
+  id: number
+  name: string
+  url: string
+  hasChildren: boolean
+  children: CategoryNode[]
+}
+
+// Returns the full category path required by the Catalog Portal API
+// e.g. "2/5/" for "Pants & Skirts" (subcategory of Clothes)
+// e.g. "10/"  for "Kids" (top-level)
+function findInTree(nodes: CategoryNode[], slug: string, parentPath = ''): string | null {
+  for (const node of nodes) {
+    const currentPath = `${parentPath}${node.id}/`
+    const urlSlug = node.url.split('/').pop()?.toLowerCase() ?? ''
+    const nameSlug = node.name.toLowerCase()
+    if (urlSlug === slug || nameSlug === slug) return currentPath
+    if (node.children?.length) {
+      const found = findInTree(node.children, slug, currentPath)
+      if (found !== null) return found
+    }
+  }
+  return null
+}
+
+async function resolveCategoryPath(slug: string): Promise<string | null> {
+  try {
+    const res = await fetch('/api/catalog_system/pub/category/tree/3')
+    if (!res.ok) throw new Error(`Category tree fetch failed: ${res.status}`)
+    const tree: CategoryNode[] = await res.json()
+    const path = findInTree(tree, slug)
+    if (!path) console.warn(`[FullWidthShelf] No category found for "${slug}"`)
+    return path
+  } catch (err) {
+    console.error('[FullWidthShelf] resolveCategoryPath error:', err)
+    return null
+  }
 }
 
 const VISIBLE = 4
@@ -75,7 +104,7 @@ const VISIBLE = 4
 
 export default function FullWidthShelf({
   title,
-  categorySlug = 'clothes',
+  categorySlug = '',
   count = 8,
 }: FullWidthShelfProps) {
   const [products, setProducts] = useState<ShelfProduct[]>([])
@@ -83,16 +112,25 @@ export default function FullWidthShelf({
   const trackRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const normalizedSlug = categorySlug.toLowerCase().replace(/^\//, '')
-    const categoryId = SLUG_TO_ID[normalizedSlug] ?? 2
-    fetch(
-      `/api/catalog_system/pub/products/search?fq=C%3A%2F${categoryId}%2F&_from=0&_to=${count - 1}&O=OrderByTopSaleDESC`
-    )
-      .then((r) => r.json())
-      .then((data: VtexProduct[]) => {
+    if (!categorySlug) return
+    const slug = categorySlug.toLowerCase().replace(/^\//, '')
+
+    const load = async () => {
+      const categoryPath = await resolveCategoryPath(slug)
+      if (!categoryPath) return
+      try {
+        // categoryPath is e.g. "2/5/" → fq=C:/2/5/ (full path needed for subcategories)
+        const res = await fetch(
+          `/api/catalog_system/pub/products/search?fq=C%3A%2F${encodeURIComponent(categoryPath)}&_from=0&_to=${count - 1}&O=OrderByTopSaleDESC`
+        )
+        const data: VtexProduct[] = await res.json()
         if (Array.isArray(data)) setProducts(parseProducts(data))
-      })
-      .catch(() => {})
+      } catch (err) {
+        console.error('[FullWidthShelf] Products fetch error:', err)
+      }
+    }
+
+    load()
   }, [categorySlug, count])
 
   const maxIndex = Math.max(0, products.length - VISIBLE)
