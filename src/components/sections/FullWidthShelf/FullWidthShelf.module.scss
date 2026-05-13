@@ -59,30 +59,28 @@
 // ─── Image ────────────────────────────────────────────────────────────────────
 
 .imageWrapper {
-  display: block;
   position: relative;
   width: 100%;
   aspect-ratio: 3 / 4;
   overflow: hidden;
   background-color: var(--fs-color-main-2, #ededed);
-
-  // Nested selectors ensure higher specificity than any FastStore global img reset
-  .imageMain,
-  .imageHover {
-    position: absolute !important;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: opacity 0.4s ease;
-  }
-
-  .imageHover {
-    opacity: 0;
-  }
 }
 
-// Keep top-level hover rule (needs .card context)
+// Top-level classes — CSS Modules scopes these correctly without nesting
+.imageMain,
+.imageHover {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.4s ease;
+}
+
+.imageHover {
+  opacity: 0;
+}
+
 .card:hover .imageHover {
   opacity: 1;
 }
