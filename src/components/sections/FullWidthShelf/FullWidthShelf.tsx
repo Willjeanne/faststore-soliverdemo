@@ -83,7 +83,8 @@ export default function FullWidthShelf({
   const trackRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const categoryId = SLUG_TO_ID[categorySlug] ?? 2
+    const normalizedSlug = categorySlug.toLowerCase().replace(/^\//, '')
+    const categoryId = SLUG_TO_ID[normalizedSlug] ?? 2
     fetch(
       `/api/catalog_system/pub/products/search?fq=C%3A%2F${categoryId}%2F&_from=0&_to=${count - 1}&O=OrderByTopSaleDESC`
     )
