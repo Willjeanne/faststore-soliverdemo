@@ -59,26 +59,30 @@
 // ─── Image ────────────────────────────────────────────────────────────────────
 
 .imageWrapper {
+  display: block;
   position: relative;
+  width: 100%;
   aspect-ratio: 3 / 4;
   overflow: hidden;
   background-color: var(--fs-color-main-2, #ededed);
+
+  // Nested selectors ensure higher specificity than any FastStore global img reset
+  .imageMain,
+  .imageHover {
+    position: absolute !important;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.4s ease;
+  }
+
+  .imageHover {
+    opacity: 0;
+  }
 }
 
-.imageMain,
-.imageHover {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: opacity 0.4s ease;
-}
-
-.imageHover {
-  opacity: 0;
-}
-
+// Keep top-level hover rule (needs .card context)
 .card:hover .imageHover {
   opacity: 1;
 }
@@ -98,9 +102,9 @@
   font-weight: var(--fs-text-weight-bold, 700);
   letter-spacing: 0.04em;
   color: var(--fs-color-main-4, #161925);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
 }
 
 .variant {
@@ -108,9 +112,9 @@
   font-size: var(--fs-text-size-tiny, 0.75rem);
   color: var(--fs-color-neutral-5, #74808b);
   letter-spacing: 0.02em;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
 }
 
 .price {

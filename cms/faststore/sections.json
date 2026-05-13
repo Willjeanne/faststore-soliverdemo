@@ -230,10 +230,10 @@
           "default": ""
         },
         "categorySlug": {
-          "title": "Slug de catégorie",
-          "description": "Ex: clothes, accessories, bags, dresses",
+          "title": "Nom de catégorie",
+          "description": "Nom exact de la catégorie dans VTEX Admin (ex: Clothes, Accessories, Bags). Insensible à la casse.",
           "type": "string",
-          "default": "clothes"
+          "default": ""
         },
         "count": {
           "title": "Nombre de produits à afficher",
