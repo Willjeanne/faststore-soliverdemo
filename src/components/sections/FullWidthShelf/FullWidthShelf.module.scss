@@ -43,9 +43,12 @@
 
 .card {
   flex: 0 0 25%;
+  min-width: 0;        /* prevent flex item from growing beyond 25% due to text content */
+  overflow: hidden;
   text-decoration: none;
   color: inherit;
-  display: block;
+  display: flex;
+  flex-direction: column;
 
   @media (max-width: 768px) {
     flex: 0 0 50%;
@@ -88,6 +91,7 @@
 // ─── Info ─────────────────────────────────────────────────────────────────────
 
 .info {
+  min-width: 0;        /* allow info section to shrink within the card */
   padding: var(--fs-spacing-3, 1rem) var(--fs-spacing-2, 0.75rem) var(--fs-spacing-2, 0.75rem);
   display: flex;
   flex-direction: column;
